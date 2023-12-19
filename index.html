@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Webapp Bot</title>
+		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+        <!--<link rel="stylesheet" href="estilos.css">-->
+		<script>
+			let tlg= window.Telegram.WebApp;
+			tlg.ready();
+			tlg.expand();
+			//let{id, first_name, last_name, username, language_code} = tlg.WebAppUser;//tlg.initDataUnsafe.user;			
+			//---------------------
+			//let mostrar= document.querySelector('#mostrar');
+			//---------------------
+			//mostrar.addEventListener('click',mostrarDatos);
+			
+			function mostrarDatos(){
+				document.getElementById("user-id").innerText= tlg.version;//localStorage.getItem('userid');
+				/*document.getElementById("user-id").innerText= id;//localStorage.getItem('userid');
+				document.getElementById("first-name").innerText= first_name;//localStorage.getItem('firstname');
+				document.getElementById("last-name").innerText= last_name; //localStorage.getItem('lastname');
+				document.getElementById("username").innerText= username;//localStorage.getItem('username');
+				document.getElementById("language-code").innerText= language_code;//localStorage.getItem('languagecode');*/
+			}
+		</script>
+    </head>
+    <body>
+		<section class="container">
+			<h3>Web Bot</h3>
+			<div id="mostrar" onclick="mostrarDatos()" class="mostrar-d">Pulsa para ver la version</div>
+			<br>
+			<div id="user-id"></div>
+			<h2 id="first-name"></h2>
+			<h2 id="last-name"></h2>
+			<h2 id="username"></h2>
+			<h2 id="language-code"></h2>
+		</section>
+	<!-- ------------------------------------------------------- -->
+	</body>
+</html>
