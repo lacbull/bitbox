@@ -10,8 +10,21 @@
 			let tlg= window.Telegram.WebApp;
 			tlg.ready();
 			tlg.expand();
+			//---
+			tlg.MainButton
+				.setText('CLOSE WEBVIEW')
+				.enable()
+				.show()
+				.onClick(function(){webviewClose();});
+			//--
+			// initialize the button
+			/*const mainButton = window.Telegram.WebApp.MainButton;
+			mainButton.text = "Save Preferences";
+			mainButton.enable();
+			mainButton.show();*/
+			//---
 			//let{id, first_name, last_name, username, language_code} = tlg.WebAppUser;//tlg.initDataUnsafe.user;
-			let{id, first_name, last_name, username, language_code} = tlg.initDataUnsafe.user;//tlg.WebAppInitData.user;
+			//let{id, first_name, last_name, username, language_code} = tlg.WebAppInitData.user;
 			//---------------------
 			//let mostrar= document.querySelector('#mostrar');
 			//---------------------
@@ -19,18 +32,33 @@
 			
 			function mostrarDatos(){
 				document.getElementById("version").innerText= tlg.version;//localStorage.getItem('userid');
-				document.getElementById("user-id").innerText= id;//localStorage.getItem('userid');
-				document.getElementById("first-name").innerText= first_name;//localStorage.getItem('firstname');
-				document.getElementById("last-name").innerText= last_name; //localStorage.getItem('lastname');
-				document.getElementById("username").innerText= username;//localStorage.getItem('username');
-				document.getElementById("language-code").innerText= language_code;//localStorage.getItem('languagecode');
+				//document.getElementById("user-id").innerText= id;//localStorage.getItem('userid');
+				//document.getElementById("first-name").innerText= first_name;//localStorage.getItem('firstname');
+				//document.getElementById("last-name").innerText= last_name; //localStorage.getItem('lastname');
+				//document.getElementById("username").innerText= username;//localStorage.getItem('username');
+				//document.getElementById("language-code").innerText= language_code;//localStorage.getItem('languagecode');
+			}
+			//----
+			function toggleMainButton(el){
+				const mainButton = tlg.MainButton;
+				if (mainButton.isVisible) {
+					mainButton.hide();
+					el.innerHTML = 'Show Main Button';
+				} else {
+					mainButton.show();
+					el.innerHTML = 'Hide Main Button';
+				}
+			}
+			//----
+			function webviewClose(){
+				tlg.close();
 			}
 		</script>
     </head>
     <body>
 		<section class="container">
-			<h3>Web Bot verion 24 diciembre</h3>
-			<div id="mostrar" onclick="mostrarDatos()" class="mostrar-d">Pulsa para ver la version 24</div>
+			<h3>Web Bot</h3>
+			<div id="mostrar" onclick="mostrarDatos()" class="mostrar-d">Pulsa para ver la version</div>
 			<br>
 			<div id="version"></div>
 			<div id="user-id"></div>
@@ -39,6 +67,9 @@
 			<h2 id="username"></h2>
 			<h2 id="language-code"></h2>
 		</section>
+		<div>
+			<button onclick="toggleMainButton(this)">Hide Main Button</button>
+		</div>
 	<!-- ------------------------------------------------------- -->
 	</body>
 </html>
