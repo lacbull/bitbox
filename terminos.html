@@ -8,18 +8,21 @@
     <!--<link rel="stylesheet" href="css/styles.css">-->
     <title>Terminos</title>
 	<script>
-		function webviewClose(){
-			//tlg.close();
-			tlg.showAlert("-Boton retroceder presionado-");
-		}
+		let tlg= window.Telegram.WebApp;
+		tlg.ready();
 		//---
 		tlg.BackButton
 			.show()
 			.onClick(function(){webViewAtras();});
 		//---
+		function webviewClose(){
+			//tlg.close();
+			tlg.showAlert("-Boton de cerrar webView-");
+		}
+		//---
 		function webViewAtras(){
 			//codigo que se ejecuta al presionar sobre el icono
-			tlg.showAlert("-Boton retroceder presionado-");	
+			tlg.showAlert("-Boton de retroceder pagina presionado-");	
 		}
 	</script>
 </head>
