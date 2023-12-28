@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <!--<link rel="stylesheet" href="css/styles.css">-->
+    <title>Registro</title>
+	<script>
+		//---
+		let tlg= window.Telegram.WebApp;
+		tlg.ready();
+		tlg.expand();
+		//---
+		function abreRegistro(){
+			const name = document.querySelector('#name').value
+			const email = document.querySelector('#email').value
+			const password = document.querySelector('#password').value
+			
+			const Users = JSON.parse(localStorage.getItem('users')) || []
+			const isUserRegistered = Users.find(user => user.email === email);
+			
+			//si email ingresado esta regitrado
+			//esta comprobacion deberia hacerse en la base de datos
+			//y debiera considerar todos los email registrados en el
+			//software a nivel global usando una funcion con API rest.
+			if(isUserRegistered){
+				return alert('El usuario ya esta registado!')
+				//document.getElementById("user-id").innerText= id;
+			}
+			//---
+			const estado= "verdadero";
+			//si el email no esta registrado entonces guarda en El
+			//almacenamiento local los datos del usuario.
+			Users.push({name: name, email: email, password: password, estado: estado})
+			localStorage.setItem('users', JSON.stringify(Users))
+			//aviso de exito
+			alert('Tu registro fue exitoso!')
+			//redireccion al index.html
+			window.location.href = 'index.html'
+		}
+		//---
+		function mostrarVersion(){
+			document.getElementById("version").innerText= tlg.version;
+		}
+		//---
+		mostrarVersion();
+	</script>
+</head>
+<body>
+    <section>
+		<div>Version actual: <span id="version"></span></div>
+		<br>
+		<h2>Registro en la cuenta</h2>
+        <form id="signupForm">
+			<div>
+				<label>Nombre</label>
+				<input type="text" placeholder="..." id="name" required autofocus>
+			</div>
+			<div>
+				<label>Mail</label>
+				<input type="email" placeholder="..." id="email" required>
+			</div>
+			<div>
+				<label>Contraseña</label>
+				<input type="password" placeholder="..." id="password" required>
+			</div>
+            <!--<input type="submit" value="Registro">-->
+			<button type="button" onclick="abreRegistro()">registrar</button>
+        </form>
+        <!--<p>Ya tienes una cuenta? <a href="login.html">Login</a></p>-->
+    </section>
+</body>
+</html>
