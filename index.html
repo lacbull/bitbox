@@ -5,71 +5,84 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Webapp Bot</title>
 		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+		<!--<script src="javascript/app.js"></script>-->
         <!--<link rel="stylesheet" href="estilos.css">-->
 		<script>
+			let Users = JSON.parse(localStorage.getItem('users')) || []
+			let validUser = Users.find(user => user.estado === "verdadero");
+			
+			if(!validUser){
+				//return alert('Usuario y/o contraseña incorrectos!')
+				window.location.href = 'registro.html'
+			}
+			//---
 			let tlg= window.Telegram.WebApp;
 			tlg.ready();
 			tlg.expand();
 			//---
 			tlg.MainButton
-				.setText('CLOSE WEBVIEW')
+				.setText('Cerrar WebApp')
 				.enable()
 				.show()
 				.onClick(function(){webviewClose();});
-			//--
-			// initialize the button
-			/*const mainButton = window.Telegram.WebApp.MainButton;
-			mainButton.text = "Save Preferences";
-			mainButton.enable();
-			mainButton.show();*/
 			//---
 			//let{id, first_name, last_name, username, language_code} = tlg.WebAppUser;//tlg.initDataUnsafe.user;
 			//let{id, first_name, last_name, username, language_code} = tlg.WebAppInitData.user;
-			//---------------------
-			//let mostrar= document.querySelector('#mostrar');
-			//---------------------
-			//mostrar.addEventListener('click',mostrarDatos);
-			
-			function mostrarDatos(){
-				document.getElementById("version").innerText= tlg.version;//localStorage.getItem('userid');
-				//document.getElementById("user-id").innerText= id;//localStorage.getItem('userid');
-				//document.getElementById("first-name").innerText= first_name;//localStorage.getItem('firstname');
-				//document.getElementById("last-name").innerText= last_name; //localStorage.getItem('lastname');
-				//document.getElementById("username").innerText= username;//localStorage.getItem('username');
-				//document.getElementById("language-code").innerText= language_code;//localStorage.getItem('languagecode');
+			//---			
+			function mostrarDatos(){				
+				//document.getElementById("user-id").innerText= id;
+				//document.getElementById("first-name").innerText= first_name;
+				//document.getElementById("last-name").innerText= last_name;
+				//document.getElementById("username").innerText= username;
+				//document.getElementById("language-code").innerText= language_code;
+			}
+			//----
+			function mostrarVersion(){
+				document.getElementById("version").innerText= tlg.version;
 			}
 			//----
 			function toggleMainButton(el){
 				const mainButton = tlg.MainButton;
-				if (mainButton.isVisible) {
+				if(mainButton.isVisible){
 					mainButton.hide();
-					el.innerHTML = 'Show Main Button';
-				} else {
+					el.innerHTML = 'Mostrar boton principal';
+				}else{
 					mainButton.show();
-					el.innerHTML = 'Hide Main Button';
+					el.innerHTML = 'Ocultar boton principal';
 				}
 			}
 			//----
 			function webviewClose(){
 				tlg.close();
 			}
+			//---
+			mostrarVersion();
+			//---
 		</script>
     </head>
     <body>
+		<div>
+			<button onclick="toggleMainButton(this)">Ocultar boton principal</button>
+		</div>
+		<div>Version actual: <span id="version"></span></div>
+		<br>
 		<section class="container">
-			<h3>Web Bot</h3>
-			<div id="mostrar" onclick="mostrarDatos()" class="mostrar-d">Pulsa para ver la version</div>
-			<br>
-			<div id="version"></div>
-			<div id="user-id"></div>
+			<div>
+				<p>Esta pagina es la que usara la modelo para administrar su pagina de ventas.</p>
+				<p>Un panel de control al cual solo se accede previo registro y aceptacion de los terminos y condiciones de uso.</p>
+				<p>En esta pagina podra evaluar el impacto de su pagina de ventas, realizar nuevas publicaciones, revisar los nuevos seguidores, etc.</p>
+				<p>Gestionar su lista de suscriptores a su canal privado de telegram.</p>
+				<p>Tambien tendra ayuda para conectar su canal privado de telegram al bot y como conseguir y registrar su clave de paypal para las
+				compras integradas en su pagina de ventas.</p>
+				<p>Estadisticas y otros datos necesarios para la toma de decisiones estrategicas</p>
+			</div>			
+			<!--<div id="user-id"></div>
 			<h2 id="first-name"></h2>
 			<h2 id="last-name"></h2>
 			<h2 id="username"></h2>
-			<h2 id="language-code"></h2>
+			<h2 id="language-code"></h2>-->
+			<br>
+			<div><a href="terminos.html">Terminos y condiciones</a></div>
 		</section>
-		<div>
-			<button onclick="toggleMainButton(this)">Hide Main Button</button>
-		</div>
-	<!-- ------------------------------------------------------- -->
 	</body>
 </html>
