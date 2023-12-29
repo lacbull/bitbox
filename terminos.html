@@ -11,6 +11,12 @@
 		let tlg= window.Telegram.WebApp;
 		tlg.ready();
 		//---
+		tlg.MainButton
+			.setText('Cerrar WebApp')
+			.enable()
+			.show()
+			.onClick(function(){webviewClose();});
+		//---
 		tlg.BackButton
 			.show()
 			.onClick(function(){webViewAtras();});
@@ -28,7 +34,9 @@
 </head>
 <body>
     <section>
-        <h1>Terminos y condiciones de uso</h1>
+        <h3>Terminos y condiciones de uso</h3>
+		<p>Aqui estableceremos los terminos y condiciones de uso de servicio adjunto al bot.</p>
+		<p>Abra un listado de actualizaciones de los terminos y condiciones con: Fecha, hora, tipo de actualizacion, descripcion de la actualizacion.</p>
     </section>
 </body>
 </html>
