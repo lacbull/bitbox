@@ -13,6 +13,12 @@
 		tlg.ready();
 		tlg.expand();
 		//---
+		tlg.MainButton
+			.setText('Cerrar WebApp')
+			.enable()
+			.show()
+			.onClick(function(){webviewClose();});
+		//---
 		function abreRegistro(){
 			const name = document.querySelector('#name').value
 			const email = document.querySelector('#email').value
@@ -45,7 +51,11 @@
 			document.getElementById("version").innerText= tlg.version;
 		}
 		//---
-		mostrarVersion();
+		function webviewClose(){
+			tlg.close();
+			//tlg.showAlert("-Boton de cerrar webView-");
+		}
+		//---
 	</script>
 </head>
 <body>
@@ -71,5 +81,8 @@
         </form>
         <!--<p>Ya tienes una cuenta? <a href="login.html">Login</a></p>-->
     </section>
+	<script>
+		mostrarVersion();
+	</script>
 </body>
 </html>
