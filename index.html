@@ -65,8 +65,28 @@
 					webviewClose();
 				}
 				//---
+				function setThemeClass() {
+					document.documentElement.className = tlg.colorScheme;
+				}
+				//---
+				Telegram.WebApp.onEvent('themeChanged', setThemeClass);
 			}
 		</script>
+		<style>
+			body{
+				 /*font-family: sans-serif;*/
+				 color: var(--tg-theme-text-color, #fff);
+				 color-scheme: var(--tg-color-scheme);
+			}
+			a{
+				color: var(--tg-theme-link-color, #2678b6);
+				text-decoration: none;
+			}
+			a:visited {
+				color: var(--tg-theme-link-color, #2678b6);
+				text-decoration: none;
+			}
+		</style>
     </head>
     <body>
 		<div>
@@ -75,7 +95,7 @@
 		<div>Version actual: <span id="version"></span></div>
 		<br>
 		<section class="container">
-			<div>
+			<div style="">
 				<p>Link de la pagina de usuario</p>
 				<p>Esta pagina es la que usara la modelo para administrar su pagina de ventas.</p>
 				<p>Un panel de control al cual solo se accede previo registro y aceptacion de los terminos y condiciones de uso.</p>
@@ -104,6 +124,7 @@
 			</div>
 		</section>
 		<script>
+			setThemeClass();
 			mostrarVersion();
 			mostrarDatos();
 		</script>
