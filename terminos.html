@@ -12,7 +12,7 @@
 		tlg.ready();
 		//---
 		tlg.MainButton
-			.setText('Cerrar WebApp')
+			.setText('Cerrar App')
 			.enable()
 			.show()
 			.onClick(function(){webviewClose();});
@@ -22,13 +22,14 @@
 			.onClick(function(){webViewAtras();});
 		//---
 		function webviewClose(){
-			//tlg.close();
-			tlg.showAlert("-Boton de cerrar webView-");
+			tlg.close();
+			//tlg.showAlert("-Boton de cerrar webView-");
 		}
 		//---
 		function webViewAtras(){
 			//codigo que se ejecuta al presionar sobre el icono
-			tlg.showAlert("-Boton de retroceder pagina presionado-");	
+			//tlg.showAlert("-Boton de retroceder pagina presionado-");
+			history.back();
 		}
 	</script>
 </head>
