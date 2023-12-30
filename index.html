@@ -56,7 +56,14 @@
 					tlg.close();
 				}
 				//---
-				
+				function eliminarData(){
+					localStorage.removeItem("name");
+					localStorage.removeItem("email");
+					localStorage.removeItem("password");
+					localStorage.removeItem("estado");
+					//---
+					webviewClose();
+				}
 				//---
 			}
 		</script>
@@ -69,6 +76,7 @@
 		<br>
 		<section class="container">
 			<div>
+				<p>Link de la pagina de usuario</p>
 				<p>Esta pagina es la que usara la modelo para administrar su pagina de ventas.</p>
 				<p>Un panel de control al cual solo se accede previo registro y aceptacion de los terminos y condiciones de uso.</p>
 				<p>En esta pagina podra evaluar el impacto de su pagina de ventas, realizar nuevas publicaciones, revisar los nuevos seguidores, etc.</p>
@@ -90,6 +98,10 @@
 			<div id="language-code"></div>
 			<br>
 			<div><a href="terminos.html">Terminos y condiciones</a></div>
+			<br>
+			<div>
+				<button onclick="eliminarData()">Eliminar datos locales</button>
+			</div>
 		</section>
 		<script>
 			mostrarVersion();
