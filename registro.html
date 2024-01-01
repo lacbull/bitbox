@@ -63,11 +63,10 @@
 			document.getElementById("username").innerText= username;
 			document.getElementById("language-code").innerText= language_code;*/
 			//---
-			document.getElementById("user-id").innerText= localStorage.getItem('userid');
-			document.getElementById("first-name").innerText= localStorage.getItem('firstname');
-			document.getElementById("last-name").innerText= localStorage.getItem('lastname');
-			document.getElementById("username").innerText= localStorage.getItem('username');
-			document.getElementById("language-code").innerText= localStorage.getItem('languagecode');
+			document.getElementById("user-id").innerText= localStorage.getItem('name');
+			document.getElementById("first-name").innerText= localStorage.getItem('email');
+			document.getElementById("last-name").innerText= localStorage.getItem('password');
+			document.getElementById("username").innerText= localStorage.getItem('estado');
 		}
 		//---
 	</script>
@@ -98,16 +97,14 @@
 			<button onclick="mostrarDatos()">Mostrar datos locales</button>
 		</div>
 		<br>
-		<div>Id del usuario:</div>
+		<div>Nombre:</div>
 		<div id="user-id"></div>
-		<div>Primer nombre:</div>
+		<div>Email:</div>
 		<div id="first-name"></div>
-		<div>Segundo nombre:</div>
+		<div>Password:</div>
 		<div id="last-name"></div>
-		<div>Nombre de usuario:</div>
+		<div>Estado:</div>
 		<div id="username"></div>
-		<div>Lenguaje:</div>
-		<div id="language-code"></div>
     </section>
 	<script>
 		mostrarVersion();
