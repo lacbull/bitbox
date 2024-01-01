@@ -56,6 +56,14 @@
 			//tlg.showAlert("-Boton de cerrar webView-");
 		}
 		//---
+		function mostrarDatos(){				
+			document.getElementById("user-id").innerText= id;
+			document.getElementById("first-name").innerText= first_name;
+			document.getElementById("last-name").innerText= last_name;
+			document.getElementById("username").innerText= username;
+			document.getElementById("language-code").innerText= language_code;
+		}
+		//---
 	</script>
 </head>
 <body>
@@ -80,6 +88,20 @@
 			<button type="button" onclick="abreRegistro()">registrar</button>
         </form>
         <!--<p>Ya tienes una cuenta? <a href="login.html">Login</a></p>-->
+		<div>
+			<button onclick="mostrarDatos()">Mostrar datos locales</button>
+		</div>
+		<br>
+		<div>Id del usuario:</div>
+		<div id="user-id"></div>
+		<div>Primer nombre:</div>
+		<div id="first-name"></div>
+		<div>Segundo nombre:</div>
+		<div id="last-name"></div>
+		<div>Nombre de usuario:</div>
+		<div id="username"></div>
+		<div>Lenguaje:</div>
+		<div id="language-code"></div>
     </section>
 	<script>
 		mostrarVersion();
