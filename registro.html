@@ -57,11 +57,17 @@
 		}
 		//---
 		function mostrarDatos(){				
-			document.getElementById("user-id").innerText= id;
+			/*document.getElementById("user-id").innerText= id;
 			document.getElementById("first-name").innerText= first_name;
 			document.getElementById("last-name").innerText= last_name;
 			document.getElementById("username").innerText= username;
-			document.getElementById("language-code").innerText= language_code;
+			document.getElementById("language-code").innerText= language_code;*/
+			//---
+			document.getElementById("user-id").innerText= localStorage.getItem('userid');
+			document.getElementById("first-name").innerText= localStorage.getItem('firstname');
+			document.getElementById("last-name").innerText= localStorage.getItem('lastname');
+			document.getElementById("username").innerText= localStorage.getItem('username');
+			document.getElementById("language-code").innerText= localStorage.getItem('languagecode');
 		}
 		//---
 	</script>
