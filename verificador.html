@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>App</title>
+		<script src="https://telegram.org/js/telegram-web-app.js"></script>
+		<!--<script src="javascript/app.js"></script>-->
+        <!--<link rel="stylesheet" href="estilos.css">-->
+	</head>
+    <body>
+		<script>
+			let tlg= window.Telegram.WebApp;
+			tlg.ready();
+			//---
+			let{id, first_name, last_name, username, language_code}= tlg.initDataUnsafe.user;
+			//---
+			fetch("https://www.botmatic.kesug.com/verificador.php",{
+				method: "POST",
+				// whatever data you want to post with a key-value pair
+				body: "id="+id,
+				headers:{
+					"Content-Type": "application/x-www-form-urlencoded"
+					//"Content-type": "application/json; charset=UTF-8"
+				}
+			})
+			.then(res=> res.json())
+			.then(data=>{
+				//--
+				if(data === 'activo'){
+					window.location.href='index.html';
+				}else{
+					window.location.href='registro.html';
+				}
+			})
+		</script>
+	</body>
+</html>
