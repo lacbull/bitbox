@@ -8,13 +8,13 @@
 		<!--<script src="javascript/app.js"></script>-->
         <!--<link rel="stylesheet" href="estilos.css">-->
 		<script>
-			let Users = JSON.parse(localStorage.getItem('users')) || []
-			let validUser = Users.find(user => user.estado === "verdadero");
+			//let Users = JSON.parse(localStorage.getItem('users')) || []
+			//let validUser = Users.find(user => user.estado === 'verdadero');
 			
-			if(!validUser){
+			//if(!validUser){
 				//return alert('Usuario y/o contraseña incorrectos!')
-				window.location.href='registro.html'
-			}else{
+				//window.location.href='registro.html'
+			//}else{
 				//---
 				let tlg= window.Telegram.WebApp;
 				tlg.ready();
@@ -56,14 +56,32 @@
 					tlg.close();
 				}
 				//---
-				function eliminarData(){
-					localStorage.removeItem("name");
+				function verificarUser(){
+					fetch("https://www.botmatic.kesug.com/verificador.php",{
+					method: "POST",
+					//whatever data you want to post with a key-value pair
+					body: "id="+id,
+						headers:{
+						"Content-Type": "application/x-www-form-urlencoded"
+						//"Content-type": "application/json; charset=UTF-8"
+						}
+					})
+					.then(res=> res.json())
+					.then(data=>{
+					//--
+						if(data === 'activo'){
+							window.location.href='index.html';
+						}else{
+							window.location.href='registro.html';
+						}
+					})
+					/*localStorage.removeItem("name");
 					localStorage.removeItem("email");
 					localStorage.removeItem("password");
-					localStorage.removeItem("estado");
+					localStorage.removeItem("estado");*/
 					//---
 					//webviewClose();
-					window.location.href='registro.html'
+					//window.location.href='registro.html'
 				}
 				//---
 				function setThemeClass() {
@@ -78,7 +96,7 @@
 				}
 				//---
 				Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-			}
+			//}
 		</script>
 		<style>
 			body{
@@ -139,8 +157,9 @@
 				<div id="st-password"></div>
 				<div>Estado:</div>
 				<div id="st-estado"></div>
+			<br>
 			<div>
-				<button onclick="eliminarData()">Eliminar datos locales</button>
+				<button onclick="verificarUser()">Verificar estado del usuario</button>
 			</div>
 		</section>
 		<script>
