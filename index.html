@@ -8,13 +8,13 @@
 		<!--<script src="javascript/app.js"></script>-->
         <!--<link rel="stylesheet" href="estilos.css">-->
 		<script>
-			//let Users = JSON.parse(localStorage.getItem('users')) || []
-			//let validUser = Users.find(user => user.estado === 'verdadero');
+			let Users = JSON.parse(localStorage.getItem('users')) || []
+			let validUser = Users.find(user => user.estado === 'verdadero');
 			
-			//if(!validUser){
+			if(!validUser){
 				//return alert('Usuario y/o contraseña incorrectos!')
-				//window.location.href='registro.html'
-			//}else{
+				window.location.href='registro.html'
+			}else{
 				//---
 				let tlg= window.Telegram.WebApp;
 				tlg.ready();
@@ -89,14 +89,20 @@
 				}
 				//---
 				function mostrarDatosLocales(){
-					document.getElementById("st-name").innerText= localStorage.getItem('name');
-					document.getElementById("st-email").innerText= localStorage.getItem('email');
-					document.getElementById("st-password").innerText= localStorage.getItem('password');
-					document.getElementById("st-estado").innerText= localStorage.getItem('estado');
+					const Users= JSON.parse(localStorage.getItem('users'))
+					const reg_email = Users[0].email;//Users.find(user => user.email);
+					const reg_name= Users[0].name;
+					const reg_password= Users[0].password;
+					const reg_estado= Users[0].estado;
+					//---
+					document.getElementById("st-name").innerText= reg_name;//localStorage.getItem('users.name');
+					document.getElementById("st-email").innerText= reg_email;//localStorage.getItem('users.email');
+					document.getElementById("st-password").innerText= reg_password;//localStorage.getItem('users.password');
+					document.getElementById("st-estado").innerText= reg_estado;//localStorage.getItem('users.estado');
 				}
 				//---
 				Telegram.WebApp.onEvent('themeChanged', setThemeClass);
-			//}
+			}
 		</script>
 		<style>
 			body{
