@@ -56,32 +56,19 @@
 					tlg.close();
 				}
 				//---
-				function verificarUser(){
-					fetch("https://www.botmatic.kesug.com/verificador.php",{
-					method: "POST",
-					//whatever data you want to post with a key-value pair
-					body: "id="+id,
-						headers:{
-						"Content-Type": "application/x-www-form-urlencoded"
-						//"Content-type": "application/json; charset=UTF-8"
-						}
-					})
-					.then(res=> res.json())
-					.then(data=>{
-					//--
-						if(data === 'activo'){
-							window.location.href='index.html';
-						}else{
-							window.location.href='registro.html';
-						}
-					})
-					/*localStorage.removeItem("name");
-					localStorage.removeItem("email");
-					localStorage.removeItem("password");
-					localStorage.removeItem("estado");*/
+				function ListaDatosUser(){
+					const Users= JSON.parse(localStorage.getItem('users'))
+					let html="";
+					Users.forEach(function(element,index){
+						html+= "<tr>";
+						html+= "<td>"+element.name+"</td>";
+						html+= "<td>"+element.email+"</td>";
+						html+= "<td>"+element.password+"</td>";
+						html+= "<td>"+element.estado+"</td>";
+						html+= "</tr>";
+					});
 					//---
-					//webviewClose();
-					//window.location.href='registro.html'
+					document.querySelector("#datos-user tbody").innerHTML=html;
 				}
 				//---
 				function setThemeClass() {
@@ -90,6 +77,7 @@
 				//---
 				function mostrarDatosLocales(){
 					const Users= JSON.parse(localStorage.getItem('users'))
+					//---
 					const reg_email = Users[0].email;//Users.find(user => user.email);
 					const reg_name= Users[0].name;
 					const reg_password= Users[0].password;
@@ -117,6 +105,9 @@
 			a:visited {
 				color: var(--tg-theme-link-color, #2678b6);
 				text-decoration: none;
+			}
+			table, th, td {
+				border: 1px solid;
 			}
 		</style>
     </head>
@@ -165,7 +156,21 @@
 				<div id="st-estado"></div>
 			<br>
 			<div>
-				<button onclick="verificarUser()">Verificar estado del usuario</button>
+				<button onclick="ListaDatosUser()">Listado de datos de usuarios</button>
+			</div>
+			<br>
+			<div style="display:block;overflow-x:scroll;scroll-behavior:smooth;padding:5px">
+				<table id="datos-user">
+				<thead>
+				  <tr>
+					<th>Nombre</th>
+					<th>Email</th>
+					<th>Password</th>
+					<th>Estado</th>
+				  </tr>
+				  </thead>
+				  <tbody></tbody>
+				</table>
 			</div>
 		</section>
 		<script>
